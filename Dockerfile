@@ -1,10 +1,8 @@
 FROM openjdk:8-jdk
 
-MAINTAINER Nick Petrovsky <nick.petrovsky@gmail.com>
+MAINTAINER Hafni Syaeful Sulun <hafni.syaeful.sulun@gmail.com>
 
-ENV ANDROID_COMPILE_SDK="28"        \
-    ANDROID_BUILD_TOOLS="29.0.3"    \
-    ANDROID_SDK_TOOLS_REV="4333796" \
+ENV ANDROID_SDK_TOOLS_REV="4333796" \
     ANDROID_CMAKE_REV="3.6.4111459" \
     ANDROID_CMAKE_REV_3_10="3.10.2.4988404"
 
@@ -26,14 +24,10 @@ RUN    yes | sdkmanager --licenses > /dev/null \
     && yes | sdkmanager --update \
     && yes | sdkmanager 'tools' \
     && yes | sdkmanager 'platform-tools' \
-    && yes | sdkmanager 'build-tools;'$ANDROID_BUILD_TOOLS \
-    && yes | sdkmanager 'platforms;android-'$ANDROID_COMPILE_SDK \
-    && yes | sdkmanager 'platforms;android-28' \
+    && yes | sdkmanager 'build-tools;29.0.3' 'build-tools;30.0.2' \
+    && yes | sdkmanager 'platforms;android-28' 'platforms;android-29' 'platforms;android-30' \
     && yes | sdkmanager 'extras;android;m2repository' \
     && yes | sdkmanager 'extras;google;google_play_services' \
     && yes | sdkmanager 'extras;google;m2repository' 
-
-RUN    yes | sdkmanager 'cmake;'$ANDROID_CMAKE_REV \
-       yes | sdkmanager --channel=3 --channel=1 'cmake;'$ANDROID_CMAKE_REV_3_10 \
-    && yes | sdkmanager 'ndk-bundle' 
-
+    && yes | sdkmanager 'cmake;3.10.2.4988404' \
+    && yes | sdkmanager 'ndk;21.0.6113669' 'ndk;21.1.6352462' 'ndk;21.2.6472646' 'ndk;21.3.6528147'
