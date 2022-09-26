@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:11-jdk
 
 MAINTAINER Hafni Syaeful Sulun <hafni.syaeful.sulun@gmail.com>
 
@@ -18,7 +18,7 @@ RUN    mkdir -p $CMDLINE_TOOLS_DIR \
 RUN    yes | sdkmanager --licenses > /dev/null \
     && yes | sdkmanager "tools" \
     && yes | sdkmanager "platform-tools" \
-    && yes | sdkmanager "build-tools;29.0.3" "build-tools;30.0.2" \
+    && yes | sdkmanager "build-tools;29.0.3" "build-tools;30.0.3" \
     && yes | sdkmanager "platforms;android-29" "platforms;android-30" \
     && yes | sdkmanager "extras;android;m2repository" \
     && yes | sdkmanager "extras;google;google_play_services" \
